@@ -1,0 +1,35 @@
+@font-face {
+    font-family: RobotoCondensed-Bold;
+    src: url(/u1/fonts/RobotoCondensed-Bold.ttf);
+}
+
+@font-face {
+    font-family: RobotoCondensed-Light;
+    src: url(/u1/fonts/RobotoCondensed-Light.ttf);
+}
+
+@font-face {
+    font-family: RobotoCondensed-Regular;
+    src: url(/u1/fonts/RobotoCondensed-Regular.ttf);
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    background-color: pink;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+
+    background-image: url("/./u1/media/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
