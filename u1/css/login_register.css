@@ -28,8 +28,8 @@ body {
 
 header {
     width: 100%;
-
-    background-image: url("/./u1/media/logo.png");
+    height: 20%;
+    background-image: url("");
     background-repeat: no-repeat;
     background-size: cover;
 }
