@@ -1,3 +1,27 @@
+/*RobotoCondensed-Bold*/
+@font-face {
+    font-family: "RobotoCondensed-Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/RobotoCondensed-Bold.ttf");
+}
+
+/*RobotoCondensed-Light*/
+@font-face {
+    font-family: "RobotoCondensed-Light";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/RobotoCondensed-Light.ttf");
+}
+
+/*RobotoCondensed-Regular*/
+@font-face {
+    font-family: "RobotoCondensed-Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/RobotoCondensed-Regular.ttf");
+}
+
 * {
     margin: 0;
 }
