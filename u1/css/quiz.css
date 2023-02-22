@@ -1,0 +1,27 @@
+* {
+    margin: 0px;
+}
+
+body {
+    display: flex;
+}
+
+#profile_bar {
+    height: 40px;
+    width: 325px;
+    display: flex;
+    align-items: center;
+    gap: 210px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    font-family: RobotoCondensed-Regular;
+}
+
+#logout_button {
+    width: 60px;
+    height: 30px;
+}
+
+#signed_in_user {
+    margin: 5px 10px;
+}

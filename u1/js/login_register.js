@@ -9,9 +9,9 @@ function create_register_site() {
     main.innerHTML = `
     <h1>REGISTER</h1>
     <form action="" id="register_form">
-        <label for="user_name">User Name</label>
+        <label for="user_name">User Name:</label>
         <input type="text" name="user_name" id="user_name">
-        <label for="password">Password</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" id="password">
         <p id="ready">Ready when you are...</p>
         <button type="submit" id="register_button">Register</button>
@@ -24,7 +24,7 @@ function create_register_site() {
     const register_form = document.querySelector("#register_form");
     register_form.addEventListener("submit", register_user_request);
 
-    // event listener to "go to login" link from register page ======> doesn't allow you to click register< ====
+    // event listener to "go to login" link from register page ======> doesn't allow you to click register more than one round< ====
     const login_instead = document.querySelector("#account_already");
     login_instead.addEventListener("click", () => create_login_site());
 }
@@ -83,7 +83,7 @@ function create_statusMessage_box(message, isSuccess) {
     document.body.appendChild(status_box);
     status_box.classList.add("status_box");
 
-    // if isSuccess is true, the status message box will have a success class, otherwise it will have an error class
+    // if isSuccess is true, the status message box will have a success class, otherwise it will have an error class =======!!!!!!!!!!! contacting server vs status box===============
     if (isSuccess) {
         status_box.classList.add("success");
     } else {
@@ -113,12 +113,12 @@ function create_login_site() {
     main.innerHTML = `
   <h1>LOGIN</h1>
   <form action="" id="login_form">
-      <label for="user_name">User Name</label>
+      <label for="user_name">User Name:</label>
       <input type="text" name="user_name" id="user_name">
-      <label for="password">Password</label>
+      <label for="password">Password:</label>
       <input type="password" name="password" id="password">
       <p id="magic_start">Let the magic start!</p>
-      <button type="submit" id="login_button">Log in</button>
+      <button type="submit" id="login_button">Login</button>
       <p id="register_now">New to this? Register for free</p>
 
   </form>
@@ -140,11 +140,13 @@ async function click_login(event) {
     switch (login_user_resource.status) {
         case 404:
             // replace text content
-            document.querySelector("#magic_start").textContent = "Wrong username or password.";
+            const magic_start = document.querySelector("#magic_start");
+            magic_start.textContent = "Wrong user name or password.";
+            magic_start.classList.add("wrong_password");
             break;
 
         case 200:
-            successful_log_in();
+            create_quiz_page();
             break;
 
         case 418:
@@ -155,12 +157,4 @@ async function click_login(event) {
             break;
     }
     console.log(login_user_resource.status);
-}
-
-function successful_log_in() {
-    const main = document.querySelector("#main");
-    main.innerHTML = `
-    
-    `;
-
 }

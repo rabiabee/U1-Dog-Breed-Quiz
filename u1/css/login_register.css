@@ -1,4 +1,4 @@
-/*RobotoCondensed-Bold;*/
+/*RobotoCondensed-Bold*/
 @font-face {
     font-family: "RobotoCondensed-Bold";
     font-style: normal;
@@ -6,7 +6,7 @@
     src: url("../fonts/RobotoCondensed-Bold.ttf");
 }
 
-/*RobotoCondensed-Light;*/
+/*RobotoCondensed-Light*/
 @font-face {
     font-family: "RobotoCondensed-Light";
     font-style: normal;
@@ -32,7 +32,7 @@ body {
 }
 
 main {
-    height: 90%;
+    height: 86%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,7 +42,9 @@ main {
 header {
     display: flex;
     justify-content: flex-end;
+
     margin: 10px;
+    padding: 5px;
 
     background-image: url("../media/logo.png");
     background-repeat: no-repeat;
@@ -51,7 +53,7 @@ header {
 
 header h2 {
     font-family: RobotoCondensed-Regular;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 main h1 {
@@ -66,8 +68,17 @@ form {
     font-family: RobotoCondensed-Regular;
 }
 
+form input {
+    margin-bottom: 10px;
+    height: 20px;
+}
+
+label {
+    font-size: 18px;
+}
+
 button {
-    font-weight: bold;
+    font-size: 16px;
     width: 300px;
     height: 40px;
 }
@@ -75,30 +86,34 @@ button {
 #ready,
 #magic_start {
     text-align: center;
-    font-family: RobotoCondensed-Light;
+    font-family: RobotoCondensed-Regular;
     font-size: 14px;
     margin: 15px 0px;
+}
+
+.wrong_password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    height: 28px;
 }
 
 #account_already,
 #register_now {
     text-decoration: underline;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 50px;
-}
-
-form input {
-    margin-bottom: 10px;
-    height: 20px;
-
 }
 
 
 footer {
     display: flex;
+    flex-direction: column;
     font-family: RobotoCondensed-Regular;
     font-size: 15px;
-    margin: 0px 15px;
+    margin: 10px 15px;
     justify-content: center;
 }
