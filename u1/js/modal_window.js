@@ -4,7 +4,7 @@
 // - Server message status box
 // - "Connecting to server" box
 // - Quiz correct/wrong answer box 
-// Take 3 arguments
+// Take 3 arguments 
 
 function create_statusMessage_box(message, isSuccess) {
     // Create semi-transparent overlay + set classname 
