@@ -4,6 +4,10 @@
 function create_register_site() {
     // Replace html content of login form with a reg form
     const main = document.querySelector("#main");
+
+    main.classList.remove("main");
+    main.classList.add("login_register_main");
+
     main.innerHTML = `
     <h1>REGISTER</h1>
 
@@ -76,6 +80,10 @@ async function click_register_button(event) {
 function create_login_site() {
     // Replace html content of reg form with a login form
     const main = document.querySelector("#main");
+
+    main.classList.remove("main");
+    main.classList.add("login_register_main");
+
     main.innerHTML = `
   <h1>LOGIN</h1>
 
@@ -109,12 +117,14 @@ async function click_login_button(event) {
 
     const request_get = new Request(`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
 
+    // Create "Contacting server..." box
+    create_statusMessage_box("Contacting server...", false, false);
+
     const login_user_resource = await fetch_resource(new Request(request_get));
 
     switch (login_user_resource.status) {
         case 400:
         case 404:
-            create_statusMessage_box("Contacting server...", false, false);
             // replace text content
             const magic_start = document.querySelector("#magic_start");
             magic_start.textContent = "Wrong user name or password.";
@@ -122,7 +132,6 @@ async function click_login_button(event) {
             break;
 
         case 200:
-            create_statusMessage_box("Contacting server...", false, false);
             create_quiz_page();
             break;
 

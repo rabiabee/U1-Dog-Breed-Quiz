@@ -48,14 +48,11 @@ async function create_statusMessage_box(message, withButton, login_register_box)
     } else {
         status_box.classList.add("contactingServer");
 
-        // Wait for 1 second to simulate server response time 
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Remove the "Contacting server..." message box after 1 second
+        // Remove the "Contacting server..." message box after 0.7s
         setTimeout(() => {
             overlay.remove();
             status_box.remove();
-        }, 1000);
+        }, 700);
 
     }
 }
