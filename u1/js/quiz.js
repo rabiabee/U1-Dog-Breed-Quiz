@@ -3,13 +3,15 @@
 function create_quiz_page() {
     const main = document.querySelector("#main");
     main.innerHTML = `
-    <div id="quiz_page">
         <div id="profile_bar">
             <p id="signed_in_user">ra1</p>
             <button id="logout_button">logout</button>
         </div>
-        <div id="quiz">quiz</div>
-    </div>
 
+        <div id="quiz">quiz</div>
     `;
+}
+
+async function get_dog_image() {
+
 }

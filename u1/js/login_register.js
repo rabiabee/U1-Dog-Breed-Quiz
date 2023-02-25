@@ -56,15 +56,15 @@ async function click_register_button(event) {
     // 418 = Not a teapot 
     switch (request_post.status) {
         case 409:
-            create_statusMessage_box("Sorry, that name is taken. Please try with another one.", false);
+            create_statusMessage_box("Sorry, that name is taken. Please try with another one.", true, true);
             break;
 
         case 200:
-            create_statusMessage_box("Registration Complete. Please proceed to login.", false);
+            create_statusMessage_box("Registration Complete. Please proceed to login.", true, true);
             break;
 
         case 418:
-            create_statusMessage_box("The server thinks it's not a teapot!", false);
+            create_statusMessage_box("The server thinks it's not a teapot!", true, true);
             break;
 
         default:
@@ -100,7 +100,7 @@ function create_login_site() {
 
 }
 
-// Async function, handles and sends server request via login submit button 
+// Async function, handles and sends get request via login submit button 
 async function click_login_button(event) {
     event.preventDefault();
 
@@ -112,7 +112,9 @@ async function click_login_button(event) {
     const login_user_resource = await fetch_resource(new Request(request_get));
 
     switch (login_user_resource.status) {
+        case 400:
         case 404:
+            create_statusMessage_box("Contacting server...", false, false);
             // replace text content
             const magic_start = document.querySelector("#magic_start");
             magic_start.textContent = "Wrong user name or password.";
@@ -120,11 +122,12 @@ async function click_login_button(event) {
             break;
 
         case 200:
+            create_statusMessage_box("Contacting server...", false, false);
             create_quiz_page();
             break;
 
         case 418:
-            create_statusMessage_box("The server thinks it's not a teapot!");
+            create_statusMessage_box("The server thinks it's not a teapot!", true, true);
             break;
 
         default:
