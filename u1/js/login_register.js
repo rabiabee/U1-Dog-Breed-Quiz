@@ -3,14 +3,12 @@
 // Create Register page 
 function create_register_site() {
     const body = document.querySelector("body");
-    // Replace html content of login form with a reg form
     const main = document.querySelector("#main");
 
     main.classList.remove("main");
     main.classList.add("login_register_main");
 
-
-
+    // Replace html content of login form with a reg form
     main.innerHTML = `
     <h1>REGISTER</h1>
 
@@ -26,13 +24,13 @@ function create_register_site() {
         <p id="account_already">Already have an account? Go to login</p>
     </form>
 `;
-    // Send post request
+    // Send post request with click event listener
     const register_form = document.querySelector("#register_form");
     register_form.addEventListener("submit", click_register_button);
 
-    // Add event listener to redirect to login page
     const login_instead = document.querySelector("#account_already");
-    // Transition
+
+    // Add event listener to redirect to login page  + add bg transition
     login_instead.addEventListener("click", () => {
         body.classList.remove("transition");
         create_login_site();
@@ -82,16 +80,15 @@ async function click_register_button(event) {
     }
 }
 
-// Create Login Page
+// Create login page
 function create_login_site() {
     const body = document.querySelector("body");
-    // Replace html content of reg form with a login form
     const main = document.querySelector("#main");
 
     main.classList.remove("main");
     main.classList.add("login_register_main");
 
-
+    // Replace html content of reg form with a login form
     main.innerHTML = `
   <h1>LOGIN</h1>
 
@@ -111,9 +108,9 @@ function create_login_site() {
     const login_form = document.querySelector("#login_form");
     login_form.addEventListener("submit", click_login_button);
 
-    // Add event listener to redirect to register page
     const register_now = document.querySelector("#register_now");
-    // Transition
+
+    // Add event listener to redirect to register page + add bg transition
     register_now.addEventListener("click", () => {
         body.classList.add("transition");
         create_register_site();
@@ -130,6 +127,7 @@ async function click_login_button(event) {
     const un = login_form.user_name.value;
     const pw = login_form.password.value;
 
+    // get request
     try {
         const request_get = new Request(`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
 
@@ -166,9 +164,11 @@ async function click_login_button(event) {
                 break;
         }
         console.log(login_user_resource.status);
-    } catch (error) {
+    }
+
+    catch (error) {
         if (error.message.includes("NetworkError")) {
-            create_statusMessage_box("Something went wrong. Please try again!", false, false);
+            create_statusMessage_box("Something went wrong. Please try again!", true, false);
         }
     }
 }

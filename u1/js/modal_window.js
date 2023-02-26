@@ -1,6 +1,5 @@
 "use strict";
-
-// Function create_statusMessage_box(message, withButton login_register_box) takes 4 arguments and creates/adjusts: 
+// Function create_statusMessage_box takes 4 arguments and creates/adjusts: 
 // - Server message status box + styles
 // - "Contacting server" box + styles
 // - Quiz correct/wrong answer box + styles
@@ -16,6 +15,8 @@ async function create_statusMessage_box(message, withButton, quiz_statusBox, bgC
     document.body.appendChild(status_box);
     status_box.classList.add("status_box");
 
+    // if quiz_StatusBox = true, add quiz_statusBox class 
+    // else add status_box class
     if (quiz_statusBox) {
         status_box.classList.add("quiz_statusBox");
     } else {
@@ -34,8 +35,9 @@ async function create_statusMessage_box(message, withButton, quiz_statusBox, bgC
         create_close_button(status_box, overlay);
     }
 }
+
+// Create "close" button
 function create_close_button(status_box, overlay) {
-    // Create "close" button
     const status_box_button = status_box.appendChild(document.createElement("button"));
 
     status_box_button.classList.add("status_box_button");
