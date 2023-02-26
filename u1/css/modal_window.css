@@ -9,7 +9,7 @@
 }
 
 .status_box {
-    font-family: RobotoCondensed-Light;
+    font-family: RobotoCondensed-Bold;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -40,11 +40,16 @@
 
 .login_register_statusBox {}
 
+.contacting_serverBox {}
+
 .quiz_statusBox {
-    background-color: #e1423c;
-    /*#e1423c
-    #4ec0bd
-    */
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-size: 25px;
 }
 
-.contacting_serverBox {}
+.quiz_statusBox button {
+    color: #2d2d2d;
+    background-color: white;
+    border: 1px #2d2d2d solid;
+}

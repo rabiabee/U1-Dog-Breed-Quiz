@@ -8,7 +8,7 @@ function create_register_site() {
 
     main.classList.remove("main");
     main.classList.add("login_register_main");
-    // Add a transition class to the main element for background color transition
+
 
 
     main.innerHTML = `
@@ -118,43 +118,52 @@ function create_login_site() {
         body.classList.add("transition");
         create_register_site();
     });
-
-    // register_now.addEventListener("click", create_register_site);
 }
 
 // Async function, handles and sends get request via login submit button 
 async function click_login_button(event) {
     event.preventDefault();
 
-    const un = login_form.user_name.value;
-    const pw = login_form.password.value;
-
-    const request_get = new Request(`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
-
     // Create "Contacting server..." box
     create_statusMessage_box("Contacting server...", false, false);
 
-    const login_user_resource = await fetch_resource(new Request(request_get));
+    const un = login_form.user_name.value;
+    const pw = login_form.password.value;
 
-    switch (login_user_resource.status) {
-        case 400:
-        case 404:
-            // replace text content
-            const magic_start = document.querySelector("#magic_start");
-            magic_start.textContent = "Wrong user name or password.";
-            magic_start.classList.add("wrong_password");
-            break;
+    try {
+        const request_get = new Request(`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
 
-        case 200:
-            create_quiz_page(un);
-            break;
+        const login_user_resource = await fetch_resource(new Request(request_get));
 
-        case 418:
-            create_statusMessage_box("The server thinks it's not a teapot!", true, false);
-            break;
+        // hide "contacting server message"
+        hide_status_box();
 
-        default:
-            break;
+        switch (login_user_resource.status) {
+            case 400:
+            case 404:
+                // replace text content
+                const magic_start = document.querySelector("#magic_start");
+                magic_start.textContent = "Wrong user name or password.";
+                magic_start.classList.add("wrong_password");
+                break;
+
+            case 200:
+                create_quiz_page(un);
+                // bg transition when user logs in
+                document.querySelector("body").classList.add("transition");
+                break;
+
+            case 418:
+                create_statusMessage_box("The server thinks it's not a teapot!", true, false);
+                break;
+
+            default:
+                break;
+        }
+        console.log(login_user_resource.status);
+    } catch (error) {
+        if (error.message.includes("NetworkError")) {
+            create_statusMessage_box("Something went wrong. Please try again!", false, false);
+        }
     }
-    console.log(login_user_resource.status);
 }
