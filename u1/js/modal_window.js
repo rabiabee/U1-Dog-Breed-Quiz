@@ -1,11 +1,11 @@
 "use strict";
 
-// Function create_statusMessage_box(message, withButton login_register_box) takes 3 arguments and creates: 
-// - Server message status box
-// - "Contacting server" box
-// - Quiz correct/wrong answer box 
+// Function create_statusMessage_box(message, withButton login_register_box) takes 3 arguments and creates/adjusts: 
+// - Server message status box + styles
+// - "Contacting server" box + styles
+// - Quiz correct/wrong answer box + styles
 
-async function create_statusMessage_box(message, withButton, login_register_box) {
+async function create_statusMessage_box(message, withButton, quiz_statusBox) {
     // Create semi-transparent overlay + set classname 
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
@@ -21,32 +21,20 @@ async function create_statusMessage_box(message, withButton, login_register_box)
     status_box.appendChild(status_box_text);
     status_box_text.textContent = message;
 
-    if (withButton && login_register_box) {
-        status_box.classList.add("login_register_statusBox");
-
-        // Create "close" button
-        const status_box_button = status_box.appendChild(document.createElement("button"));
-        status_box_button.textContent = "CLOSE";
-
-        status_box_button.addEventListener("click", () => {
-            overlay.remove();
-            status_box.remove();
-        });
-
-    } else if (withButton) {
+    if (withButton && quiz_statusBox) {
         status_box.classList.add("quiz_statusBox");
 
         // Create "close" button
-        const status_box_button = status_box.appendChild(document.createElement("button"));
-        status_box_button.textContent = "CLOSE";
+        create_close_button(status_box, overlay);
 
-        status_box_button.addEventListener("click", () => {
-            overlay.remove();
-            status_box.remove();
-        });
+    } else if (withButton) {
+        status_box.classList.add("login_register_statusBox");
+
+        // Create "close" button
+        create_close_button(status_box, overlay);
 
     } else {
-        status_box.classList.add("contactingServer");
+        status_box.classList.add("contacting_serverBox");
 
         // Remove the "Contacting server..." message box after 0.7s
         setTimeout(() => {
@@ -55,4 +43,14 @@ async function create_statusMessage_box(message, withButton, login_register_box)
         }, 700);
 
     }
+}
+function create_close_button(status_box, overlay) {
+    // Create "close" button
+    const status_box_button = status_box.appendChild(document.createElement("button"));
+    status_box_button.textContent = "CLOSE";
+
+    status_box_button.addEventListener("click", () => {
+        overlay.remove();
+        status_box.remove();
+    });
 }

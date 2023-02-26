@@ -2,11 +2,14 @@
 
 // Create Register page 
 function create_register_site() {
+    const body = document.querySelector("body");
     // Replace html content of login form with a reg form
     const main = document.querySelector("#main");
 
     main.classList.remove("main");
     main.classList.add("login_register_main");
+    // Add a transition class to the main element for background color transition
+
 
     main.innerHTML = `
     <h1>REGISTER</h1>
@@ -23,14 +26,17 @@ function create_register_site() {
         <p id="account_already">Already have an account? Go to login</p>
     </form>
 `;
-
-    // Click reg button sends post request by calling register_user_request function
+    // Send post request
     const register_form = document.querySelector("#register_form");
     register_form.addEventListener("submit", click_register_button);
 
-    // Add event listener to "already have an account?" text from register page to return to login page (by calling create_login_site function)
+    // Add event listener to redirect to login page
     const login_instead = document.querySelector("#account_already");
-    login_instead.addEventListener("click", () => create_login_site());
+    // Transition
+    login_instead.addEventListener("click", () => {
+        body.classList.remove("transition");
+        create_login_site();
+    });
 }
 
 // Async function, handles and sends post request via register submit button
@@ -60,15 +66,15 @@ async function click_register_button(event) {
     // 418 = Not a teapot 
     switch (request_post.status) {
         case 409:
-            create_statusMessage_box("Sorry, that name is taken. Please try with another one.", true, true);
+            create_statusMessage_box("Sorry, that name is taken. Please try with another one.", true, false);
             break;
 
         case 200:
-            create_statusMessage_box("Registration Complete. Please proceed to login.", true, true);
+            create_statusMessage_box("Registration Complete. Please proceed to login.", true, false);
             break;
 
         case 418:
-            create_statusMessage_box("The server thinks it's not a teapot!", true, true);
+            create_statusMessage_box("The server thinks it's not a teapot!", true, false);
             break;
 
         default:
@@ -78,11 +84,13 @@ async function click_register_button(event) {
 
 // Create Login Page
 function create_login_site() {
+    const body = document.querySelector("body");
     // Replace html content of reg form with a login form
     const main = document.querySelector("#main");
 
     main.classList.remove("main");
     main.classList.add("login_register_main");
+
 
     main.innerHTML = `
   <h1>LOGIN</h1>
@@ -99,13 +107,19 @@ function create_login_site() {
       <p id="register_now">New to this? Register for free</p>
   </form>
 `;
+    // Send get request
     const login_form = document.querySelector("#login_form");
     login_form.addEventListener("submit", click_login_button);
 
-    // event listener to "register" link from login page
+    // Add event listener to redirect to register page
     const register_now = document.querySelector("#register_now");
-    register_now.addEventListener("click", create_register_site);
+    // Transition
+    register_now.addEventListener("click", () => {
+        body.classList.add("transition");
+        create_register_site();
+    });
 
+    // register_now.addEventListener("click", create_register_site);
 }
 
 // Async function, handles and sends get request via login submit button 
@@ -132,11 +146,11 @@ async function click_login_button(event) {
             break;
 
         case 200:
-            create_quiz_page();
+            create_quiz_page(un);
             break;
 
         case 418:
-            create_statusMessage_box("The server thinks it's not a teapot!", true, true);
+            create_statusMessage_box("The server thinks it's not a teapot!", true, false);
             break;
 
         default:

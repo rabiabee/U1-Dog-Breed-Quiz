@@ -9,11 +9,12 @@
 }
 
 .status_box {
+    font-family: RobotoCondensed-Light;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 12px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -22,10 +23,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .status_box button {
-    margin-top: 20px;
+    font-family: RobotoCondensed-Regular;
+    margin-top: 15px;
     padding: 10px 20px;
     background-color: #2d2d2d;
     color: white;
@@ -34,3 +37,14 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
+
+.login_register_statusBox {}
+
+.quiz_statusBox {
+    background-color: #e1423c;
+    /*#e1423c
+    #4ec0bd
+    */
+}
+
+.contacting_serverBox {}

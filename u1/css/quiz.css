@@ -1,15 +1,15 @@
-* {
-    margin: 0px;
-}
-
-body {
+.quiz_main {
     display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
 }
 
 #profile_bar {
     height: 40px;
     width: 325px;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 210px;
     background-color: rgb(255, 255, 255);
@@ -25,3 +25,5 @@ body {
 #signed_in_user {
     margin: 5px 10px;
 }
+
+#quiz_container {}
