@@ -24,6 +24,14 @@ async function create_quiz_page(un) {
         </div>
     `;
 
+    // Add event listener to logout button to clear localStorage
+    const logoutBtn = document.querySelector("#logout_button");
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        create_login_site();
+    });
+
+
     await create_quiz_game(un);
 
     hide_status_box();

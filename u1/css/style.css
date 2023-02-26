@@ -3,7 +3,10 @@
     font-family: "RobotoCondensed-Bold";
     font-style: normal;
     font-weight: 700;
-    src: url("../fonts/RobotoCondensed-Bold.ttf");
+    src: url("../fonts/RobotoCondensed-Bold.ttf"),
+        url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.eot") format("embedded-opentype"),
+        url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.woff2") format("woff2"),
+        url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.woff") format("woff");
 }
 
 /*RobotoCondensed-Light*/
@@ -11,7 +14,10 @@
     font-family: "RobotoCondensed-Light";
     font-style: normal;
     font-weight: 300;
-    src: url("../fonts/RobotoCondensed-Light.ttf");
+    src: url("../fonts/RobotoCondensed-Light.ttf"),
+        url("../fonts/RobotoCondensed_light/RobotoCondensedLight.eot") format("embedded-opentype"),
+        url("../fonts/RobotoCondensed_light/RobotoCondensedLight.woff2") format("woff2"),
+        url("../fonts/RobotoCondensed_light/RobotoCondensedLight.woff") format("woff");
 }
 
 /*RobotoCondensed-Regular*/
@@ -19,7 +25,10 @@
     font-family: "RobotoCondensed-Regular";
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/RobotoCondensed-Regular.ttf");
+    src: url("../fonts/RobotoCondensed-Regular.ttf"),
+        url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.eot") format("embedded-opentype"),
+        url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.woff2") format("woff2"),
+        url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.woff") format("woff");
 }
 
 * {

@@ -148,7 +148,12 @@ async function click_login_button(event) {
                 break;
 
             case 200:
+                // save the loggedInUser to localStorage after successful login
+                localStorage.setItem("loggedInUser", un);
+
+                // create quiz page
                 create_quiz_page(un);
+
                 // bg transition when user logs in
                 document.querySelector("body").classList.add("transition");
                 break;

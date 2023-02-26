@@ -32,8 +32,6 @@ async function create_statusMessage_box(message, withButton, quiz_statusBox, bgC
     if (withButton) {
         // Create "close" button
         create_close_button(status_box, overlay);
-    } else {
-        console.log(":)");
     }
 }
 function create_close_button(status_box, overlay) {
