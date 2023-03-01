@@ -61,7 +61,6 @@ button {
 
 footer {
     display: flex;
-    flex-direction: column;
     font-family: RobotoCondensed-Regular;
     font-size: 15px;
     margin: 10px 15px;

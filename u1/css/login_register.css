@@ -70,4 +70,10 @@ button {
     text-align: center;
     font-size: 18px;
     margin-top: 50px;
+    cursor: pointer;
+}
+
+#register_button,
+#login_button {
+    font-family: RobotoCondensed-Regular;
 }

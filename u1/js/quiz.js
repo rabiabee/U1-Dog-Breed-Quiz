@@ -9,6 +9,7 @@ async function create_quiz_page(un) {
 
     main.classList.remove("main");
     main.classList.remove("login_register_main");
+
     main.classList.add("quiz_main");
     main.classList.add("bg_img");
 
@@ -46,13 +47,14 @@ async function create_quiz_game(un) {
 
     // fetch image for the dog breed
     const response_image = await fetch_resource(`https://dog.ceo/api/breed/${random_dog.url}/images/random`);
+
     const dog = await response_image.json();
 
     // create image element with the fetched image URL
     const img = document.querySelector("#quiz_image");
-    img.src = await dog.message;
+    img.src = dog.message;
 
-    // create array of 4 dog breeds, including the correct answer
+    // create array of 4 dog breeds, including the correct answer random_dog 
     const options = [random_dog];
     while (options.length < 4) {
         const optionDog = ALL_BREEDS[getRandom(ALL_BREEDS.length)];
@@ -61,19 +63,17 @@ async function create_quiz_game(un) {
         }
     }
 
+    // shuffle the array of options
+    shuffleArray(options);
+
     // create 4 clickable options
     const options_container = document.querySelector("#quiz_options");
-    for (let i = 0; i < options.length; i++) {
-        const optionDog = options[i];
+    const optionButtons = options.map((optionDog) => {
+        const button = document.createElement("button");
+        button.textContent = optionDog.name;
 
-        // create button element for the option
-        const btn = document.createElement("button");
-        btn.textContent = optionDog.name;
-
-        // add event listener for the option button
-        btn.addEventListener("click", () => {
+        button.addEventListener("click", () => {
             if (optionDog === random_dog) {
-
                 // show "correct" status message
                 create_statusMessage_box("Correct!", true, true, "#4fbdbb");
 
@@ -83,11 +83,18 @@ async function create_quiz_game(un) {
             }
         });
 
-        // append the button element to the options container
-        options_container.appendChild(btn);
-    }
+        return button;
+    });
+
+    // append the button elements to the options container
+    options_container.append(...optionButtons);
 }
+
 
 function getRandom(max) {
     return Math.floor(Math.random() * max);
 }
+function shuffleArray(array) {
+    array.sort(() => Math.random() - 0.5);
+}
+

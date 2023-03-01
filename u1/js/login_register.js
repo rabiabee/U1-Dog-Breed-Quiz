@@ -24,13 +24,22 @@ function create_register_site() {
         <p id="account_already">Already have an account? Go to login</p>
     </form>
 `;
-    // Send post request with click event listener
+
+    /*
+        const register_form = document.querySelector("#register_form");
+        register_form.addEventListener("submit", click_register_button); 
+    */
+
+    // Send post request with event listener 
     const register_form = document.querySelector("#register_form");
-    register_form.addEventListener("submit", click_register_button);
+    register_form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        click_register_button(event);
+    });
+
 
     const login_instead = document.querySelector("#account_already");
-
-    // Add event listener to redirect to login page  + add bg transition
+    // Add event listener to redirect to login page + add bg transition
     login_instead.addEventListener("click", () => {
         body.classList.remove("transition");
         create_login_site();
@@ -56,8 +65,8 @@ async function click_register_button(event) {
     };
 
     const request_post = await fetch_resource(new Request(prefix, post));
-    console.log(request_post.status);
 
+    console.log(request_post.status);
     // <-- STATUS MESSAGES --> 
     // 409 = Conflict
     // 200 = Success
@@ -104,13 +113,16 @@ function create_login_site() {
       <p id="register_now">New to this? Register for free</p>
   </form>
 `;
-    // Send get request
-    const login_form = document.querySelector("#login_form");
-    login_form.addEventListener("submit", click_login_button);
 
-    const register_now = document.querySelector("#register_now");
+    const login_form = document.querySelector("#login_form");
+    login_form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        click_login_button(event);
+    });
+
 
     // Add event listener to redirect to register page + add bg transition
+    const register_now = document.querySelector("#register_now");
     register_now.addEventListener("click", () => {
         body.classList.add("transition");
         create_register_site();
@@ -129,7 +141,7 @@ async function click_login_button(event) {
 
     // get request
     try {
-        const request_get = new Request(`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
+        const request_get = (`${prefix}?action=check_credentials&user_name=${un}&password=${pw}`);
 
         const login_user_resource = await fetch_resource(new Request(request_get));
 
@@ -172,3 +184,4 @@ async function click_login_button(event) {
         }
     }
 }
+
